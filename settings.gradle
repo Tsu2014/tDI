@@ -1,0 +1,4 @@
+include ':Javalib'
+include ':injectLib'
+include ':app'
+rootProject.name = "tDI"
