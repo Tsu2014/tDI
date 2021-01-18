@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
         Log.d(TAG , "inject -- before");
         InjectManager.inject(this);
         Log.d(TAG , "inject -- after");
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this , "test1" , Toast.LENGTH_SHORT).show();
+
             }
         });
     }

@@ -2,13 +2,21 @@ package com.tsu.javalib;
 
 import java.lang.reflect.Proxy;
 
+import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+
 public class MyClass {
 
-    public static void main(String [] args){
+    public static void testProxy(){
         IShop test = new TsuTest1();
         DynamicPurchasing dynamicPurchasing = new DynamicPurchasing(test);
         IShop purchasing = (IShop) Proxy.newProxyInstance(test.getClass().getClassLoader() , new Class[]{IShop.class} , dynamicPurchasing);
         purchasing.action("tsu" , 18);
+    }
+
+    public static void main(String [] args){
+        String text = "hel#%&^*&(*low1234234234orld";
+        text = text.replaceAll("." , "*");
+        System.out.println(text);
     }
 
 }
