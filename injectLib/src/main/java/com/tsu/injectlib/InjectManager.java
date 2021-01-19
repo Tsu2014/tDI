@@ -31,10 +31,10 @@ public class InjectManager {
                 Class<? extends Annotation> annotationType = annotation.annotationType();
                 InjectEvent injectEvent = annotationType.getAnnotation(InjectEvent.class);
                 if(injectEvent != null){
+                    String listenerSetter = injectEvent.listenerSetter();
                     Class listenerType = injectEvent.listenerType();
                     String callMethod = injectEvent.callbackMethod();
-                    String listenerSetter = injectEvent.listenerSetter();
-                    Log.d(TAG , "callMethod : "+callMethod +" , setter : "+listenerSetter+" , listenerType : "+listenerType);
+                    //Log.d(TAG , "callMethod : "+callMethod +" , setter : "+listenerSetter+" , listenerType : "+listenerType);
                     Method annoValueMethod = null;
                     try{
                         annoValueMethod = annotationType.getDeclaredMethod("value");
@@ -42,11 +42,14 @@ public class InjectManager {
                         for(int id : ids){
                             Method findViewById = clazz.getMethod("findViewById" , int.class);
                             View view = (View)findViewById.invoke(object , id);
-                            Method setOnListenerMethod = view.getClass().getMethod(listenerSetter , listenerType);   //method2 is setOnClickListener()
-                            Listenerhandler listenerhandler = new Listenerhandler(view , method);       // method is action1()
+                            //Method mCallMethod = listenerType.getMethod(callMethod , View.class);
+                            Method setOnListenerMethod = view.getClass().getMethod(listenerSetter , listenerType);   //setOnClickListener()
+                            Listenerhandler listenerhandler = new Listenerhandler(object , method);       // method is action1()
                             Object listener = Proxy.newProxyInstance(listenerType.getClassLoader() , new Class[]{listenerType} , listenerhandler);
-                            Log.d(TAG , "listener : "+listener.getClass().getName());
+
+                            //button.setOnClickListener(new View.onClickListener());
                             setOnListenerMethod.invoke(view , listener);
+                            Log.d(TAG , view.getClass().getSimpleName() + "."+setOnListenerMethod.getName()+" , args : "+listener.getClass().getName());
                         }
                     }catch (Exception e){
                         e.printStackTrace();
