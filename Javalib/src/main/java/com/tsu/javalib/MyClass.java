@@ -10,13 +10,12 @@ public class MyClass {
         IShop test = new TsuTest1();
         DynamicPurchasing dynamicPurchasing = new DynamicPurchasing(test);
         IShop purchasing = (IShop) Proxy.newProxyInstance(test.getClass().getClassLoader() , new Class[]{IShop.class} , dynamicPurchasing);
-        purchasing.action("tsu" , 18);
+        purchasing.action1("tsu" , 18);
+        purchasing.action2("hehe");
     }
 
     public static void main(String [] args){
-        String text = "hel#%&^*&(*low1234234234orld";
-        text = text.replaceAll("." , "*");
-        System.out.println(text);
+        testProxy();
     }
 
 }

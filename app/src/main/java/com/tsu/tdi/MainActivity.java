@@ -35,21 +35,21 @@ public class MainActivity extends AppCompatActivity {
         InjectManager.inject(this);
         Log.d(TAG , "inject -- after");
 
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        button1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
     }
 
     @OnClick({R.id.main_button1})
-    void action1(){
+    public void action1(){
         Toast.makeText(MainActivity.this , "test1" , Toast.LENGTH_SHORT).show();
     }
 
     @OnLongClick({R.id.main_button2})
-    boolean action2(){
+    public boolean action2(){
         Toast.makeText(MainActivity.this , "LongClick" , Toast.LENGTH_SHORT).show();
         return false;
     }
