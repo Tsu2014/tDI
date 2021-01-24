@@ -2,8 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
-      <module name="tDI.app" target="1.8" />
-      <module name="tDI.injectLib" target="1.8" />
+      <module name="tDI.app" target="13" />
+      <module name="tDI.injectLib" target="13" />
+      <module name="tDI.iocLib" target="13" />
     </bytecodeTargetLevel>
   </component>
 </project>

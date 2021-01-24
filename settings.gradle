@@ -1,3 +1,5 @@
+include ':Javalib2'
+include ':iocLib'
 include ':Javalib'
 include ':injectLib'
 include ':app'
