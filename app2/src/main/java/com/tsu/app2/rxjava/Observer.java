@@ -1,14 +1,13 @@
-package com.tsu.tdi.rxjava;
-
+package com.tsu.app2.rxjava;
 
 /**
- * abstract Obeserver
- * @param <T>
+ * 抽象观察者
  */
 public interface Observer<T> {
 
+    void onSubscribe();
     void onNext(T t);
-    void onComplete();
     void onError(Throwable e);
+    void onComplete();
 
 }
