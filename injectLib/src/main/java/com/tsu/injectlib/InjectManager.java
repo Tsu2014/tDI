@@ -49,7 +49,6 @@ public class InjectManager {
 
                             //button.setOnClickListener(new View.onClickListener());
                             setOnListenerMethod.invoke(view , listener);
-                            Log.d(TAG , view.getClass().getSimpleName() + "."+setOnListenerMethod.getName()+" , args : "+listener.getClass().getName());
                         }
                     }catch (Exception e){
                         e.printStackTrace();

@@ -15,7 +15,9 @@ public class MyClass {
     }
 
     public static void main(String [] args){
-        testProxy();
+        String text = "hel#%&^*&(*low1234234234orld";
+        text = text.replaceAll(".{8}" , "*");
+        System.out.println(text);
     }
 
 }

@@ -17,9 +17,7 @@ public class Listenerhandler implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Log.d(TAG , "object : "+object.getClass().getName()+" , myMd : "+myMethod.getName()+" , method : "+method.getName()+" , args0 : "+args[0].getClass().getName());
-        //MainActivity.action1();
-        myMethod.invoke(object);
 
-        return method.invoke(object , args);
+        return myMethod.invoke(object);
     }
 }
