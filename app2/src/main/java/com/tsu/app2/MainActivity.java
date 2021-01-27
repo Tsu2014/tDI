@@ -7,7 +7,13 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.tsu.app2.pissa.BasePizza;
+import com.tsu.app2.pissa.Pizza;
+import com.tsu.app2.pissa.PizzaA;
+import com.tsu.app2.pissa.PizzaB;
+import com.tsu.app2.pissa.PizzaC;
 import com.tsu.app2.rxjava.Emitter;
+import com.tsu.app2.rxjava.Function;
 import com.tsu.app2.rxjava.Observable;
 import com.tsu.app2.rxjava.ObservableOnSubscribe;
 import com.tsu.app2.rxjava.Observer;
@@ -48,16 +54,28 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void subscribe(Emitter<String> emitter) throws Exception {
                 emitter.onNext("hello!");
+                emitter.onComplete();
             }
-        }).subscribe(new Observer() {
+        }).map(new Function<String, String>() {
+            @Override
+            public String apply(String s) {
+                return s+" java";
+            }
+        }).map(new Function<String, String>() {
+
+            @Override
+            public String apply(String s) {
+                return s+" Objective-C";
+            }
+        }).subscribeOn().observeOn().subscribe(new Observer() {
             @Override
             public void onSubscribe() {
-                Log.d(TAG , "onSubscribe");
+                Log.d(TAG , "Observer onSubscribe "+Thread.currentThread().getName());
             }
 
             @Override
             public void onNext(Object o) {
-                Log.d(TAG , "onNext : "+o);
+                Log.d(TAG , "onNext : "+o+ " - "+Thread.currentThread().getName());
             }
 
             @Override
@@ -75,5 +93,9 @@ public class MainActivity extends AppCompatActivity {
     @OnClick({R.id.main_button2})
     public void action2(){
         Log.d(TAG , "action2");
+        Pizza pizza = new BasePizza();
+        PizzaA p = new PizzaA(new PizzaB(new PizzaC(pizza)));
+        p.show();
+
     }
 }

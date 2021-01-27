@@ -1,5 +1,9 @@
 package com.tsu.app2.rxjava;
 
+/**
+ * 被观察者实现类
+ * @param <T>
+ */
 public class ObservableCreate<T> extends Observable{
 
     ObservableOnSubscribe<T> source;
@@ -13,6 +17,10 @@ public class ObservableCreate<T> extends Observable{
         super.subscribe(observer);
     }
 
+    /**
+     * 实现被观察者的注册方法
+     * @param observer
+     */
     @Override
     protected void subscribeActual(Observer observer) {
         //
@@ -25,6 +33,10 @@ public class ObservableCreate<T> extends Observable{
         }
     }
 
+    /**
+     * 消息发送者
+     * @param <T>
+     */
     static final class CreateEmitter<T> implements Emitter<T>{
 
         Observer<T> observer;
